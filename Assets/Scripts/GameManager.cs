@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour   //rename to BoardManager?
+public class GameManager : MonoBehaviour
 {
     public GameObject obstacleBoxes;
     public GameObject obstaclePlant1;
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
     public GameOverScreen gameOverScreen;
 
     private List<GameObject> obstacleGameObjects;
-    private List<Obstacle> obstacles;
+    private List<Obstacle> obstacles;  //TODO refactor to use a single list
 
     private const float OFFSET_VERTICAL = 1f;
     private const float OFFSET_HORIZONTAL = 1f;
@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
     private const int GRID_ROWS = 6;
     private const int GRID_COLUMNS = 6;
 
-    private const int WINNING_LOCATION_X = 4;
-    private const int WINNING_LOCATION_Y = 5;  //TODO fix x and y names to avoid confusion?
+    private const int WINNING_LOCATION_ROW = 4;
+    private const int WINNING_LOCATION_COL = 5;  //TODO fix x and y names to avoid confusion?
 
-    private int[,] grid;  //rename to board?
+    private int[,] grid;
 
     public int[,] getGrid() { return grid; }
 
@@ -77,9 +77,7 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
         SpawnStroller(2, 1);
         SpawnBike(1,1);
 
-        //TODO  Randomise / Procedural Generation of obstacles
-
-        Debug.Log("Total objects spawned: " + obstacleGameObjects.Count);
+        //TODO  Random / Procedural Generation of obstacles
     }
 
     public void HideAllArrowsOnScreen()
@@ -94,19 +92,6 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
     {
         gameOverScreen.Setup();
     }
-
-/*    void MoveObstacle(Obstacle obstacle, String direction)
-    {
-        switch (direction)
-        {
-            case "left":
-                MoveLeft(obstacle);
-                break;
-            case "right": break;
-            case "up": break;
-            case "down": break;
-        }
-    }*/
 
     void UpdateGrid(int x, int y, int len, int hei)
     {
@@ -126,7 +111,7 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
         //check win condition (Family object made it to the exit door location)
         if (obstacle.isWinCondition == false) return;
 
-        if(obstacle.x == WINNING_LOCATION_X && obstacle.y == WINNING_LOCATION_Y)
+        if(obstacle.x == WINNING_LOCATION_ROW && obstacle.y == WINNING_LOCATION_COL)
         {
             foreach(GameObject o in obstacleGameObjects)
             {
