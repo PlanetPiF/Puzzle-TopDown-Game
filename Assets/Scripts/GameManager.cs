@@ -155,7 +155,6 @@ public class GameManager : MonoBehaviour
         int x = obstacle.x;
         int y = obstacle.y;
         int length = obstacle.length;
-        int heigth = obstacle.height;
 
         if (x == 0) return false;
 
@@ -176,13 +175,13 @@ public class GameManager : MonoBehaviour
         int x = obstacle.x;
         int y = obstacle.y;
         int length = obstacle.length;
-        int heigth = obstacle.height;
+        int height = obstacle.height;
 
-        if (x + heigth >= GRID_ROWS) return false;
+        if (x + height >= GRID_ROWS) return false;
 
         for (int i = 0; i < length; i++)
         {
-            if (grid[x + heigth , y + i] == 1)
+            if (grid[x + height , y + i] == 1)
             {
                 return false;
             }
