@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour   //rename to BoardManager?
 {
@@ -240,7 +236,6 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
             grid[x + i, y + length-1] = 0;
         }
 
-        obstacle.isSelected = true;
         obstacle.y -= 1;
 
     }
@@ -261,7 +256,6 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
 
         }
 
-        obstacle.isSelected = true;
         obstacle.y += 1;
 
     }
@@ -282,7 +276,6 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
 
         }
 
-        obstacle.isSelected = true;
         obstacle.x -= 1;
 
     }
@@ -302,7 +295,7 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
             grid[x , y + i] = 0;
 
         }
-        obstacle.isSelected = true;
+        
         obstacle.x += 1; 
 
     }
@@ -322,7 +315,6 @@ public class GameManager : MonoBehaviour   //rename to BoardManager?
         ob.y = column;
         ob.isWinCondition = true;
 
-        //TODO update GRID here with filled spaces
         obstacleGameObjects.Add(familyTile);
         obstacles.Add(ob);
         UpdateGrid(ob.x, ob.y, ob.length, ob.height);

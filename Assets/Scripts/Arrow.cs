@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class arrow : MonoBehaviour
+public class Arrow : MonoBehaviour
 {
 
     public GameObject parent;
@@ -18,28 +16,13 @@ public class arrow : MonoBehaviour
     }
 
     public ArrowType arrowType;
-/*    public Rigidbody2D rb;*/
 
     // Start is called before the first frame update
     void Start()
     {
         parent = GetComponent<GameObject>();
-       /* rb = GetComponent<Rigidbody2D>();
-        EnableRagdoll();*/
     }
 
-/*    // Let the rigidbody take control and detect collisions.
-    void EnableRagdoll()
-    {
-        rb.isKinematic = false;
-    }
-
-    // Let animation control the rigidbody and ignore collisions.
-    void DisableRagdoll()
-    {
-        rb.isKinematic = true;
-
-    }*/
 
     private void OnMouseDown()
     {
@@ -47,9 +30,6 @@ public class arrow : MonoBehaviour
 
         var parent = this.transform.parent;
         Obstacle parentObstacle = this.transform.parent.gameObject.GetComponent<Obstacle>();
-       /* parentObstacle.ApplyDamage(parentObstacle.x);
-        parentObstacle.ApplyDamage(parentObstacle.y);*/
-        /* parent.SendMessage("ApplyDamage", 5.0);*/
 
         switch (arrowType)
         {
@@ -75,20 +55,5 @@ public class arrow : MonoBehaviour
         gameManager.PerformGameOverCheck(parentObstacle);
 
         parentObstacle.DisplayValidArrows();
-        /*this.gameObject.SetActive(false);  */
-
-        // fire an EVENT to GameManager --> update the game/board?
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /*this.gameObject.SetActive(false);*/
-        Debug.Log("Collision detected!");
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log("Collision detected TYPE #2!");
-    }
-
 }
